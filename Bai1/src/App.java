@@ -24,9 +24,10 @@ public class App {
             System.out.println("4: Close App");
             System.out.print("Your choice: ");
             Scanner scanner = new Scanner(System.in);
-            System.out.println();
 
             choice = scanner.nextInt();
+            System.out.println();
+
             switch (choice) {
                 case 1:
                     addNewEmployee(); // Thêm một nhân viên mới
@@ -70,30 +71,43 @@ public class App {
         System.out.println("Enter employee details:");
         System.out.print("ID: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Đọc bỏ dòng new line sau khi đọc số nguyên
+        boolean checkId = true;
+        for (Employee employee : employeeList) {
+            if (id == employee.id) {
+                checkId = false;
+                break;
+            }
+        }
+        // Kiểm tra trùng id
+        if (checkId) {
+            scanner.nextLine(); // Đọc bỏ dòng new line sau khi đọc số nguyên
 
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
 
-        System.out.print("Age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine(); // Đọc bỏ dòng new line sau khi đọc số nguyên
+            System.out.print("Age: ");
+            int age = scanner.nextInt();
+            scanner.nextLine(); // Đọc bỏ dòng new line sau khi đọc số nguyên
 
-        System.out.print("Department: ");
-        String department = scanner.nextLine();
+            System.out.print("Department: ");
+            String department = scanner.nextLine();
 
-        System.out.print("Code: ");
-        String code = scanner.nextLine();
+            System.out.print("Code: ");
+            String code = scanner.nextLine();
 
-        System.out.print("Salary Rate: ");
-        double salaryRate = scanner.nextDouble();
+            System.out.print("Salary Rate: ");
+            double salaryRate = scanner.nextDouble();
 
-        Employee newEmployee = new Employee(id, name, age, department, code, salaryRate);
-        employeeList.add(newEmployee);
-        System.out.println();
+            Employee newEmployee = new Employee(id, name, age, department, code, salaryRate);
+            employeeList.add(newEmployee);
+            System.out.println();
 
-        System.out.println("New employee added successfully.\n");
-        System.out.println();
+            System.out.println("New employee added successfully.\n");
+            System.out.println();
+        } else {
+            System.out.println("Your id is erroe!");
+            System.out.println();
+        }
 
         // // không đóng scanner luôn vì khi đóng nó là đóng luôn System.in và không thể
         // mở ra trong ứng dụng này
